@@ -22,9 +22,7 @@ function getResult(){
 	operand1 = new Operand("operand1");
 	operand2 = new Operand("operand2");
 	operator = new Operator("operator");
-	if (!document.getElementById("operand1").validity.patternMismatch 
-	    && !document.getElementById("operator").validity.patternMismatch
-		&& !document.getElementById("operand2").validity.patternMismatch){
+	if (operand1.isvalid("operand1") && operand2.isvalid("operand2") && operator.isvalid("operator")){
 	    return calculate(operand1.value, operand2.value, operator.value);
 	}else {
 	    return "Invalid";
