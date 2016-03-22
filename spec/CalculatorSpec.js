@@ -1,11 +1,11 @@
 function setUpHTMLFixture() {
      setFixtures('<form id="calculator">'
      	        +'  Operand1'
-                +'  <input type="text" name="operand1" id="operand1" required/>'
+                +'  <input type="text" name="operand1" id="operand1" value="3" required/>'
                 +'  Operand2'
-                +'  <input type="text" name="operand2"id="operand2" required/>'
+                +'  <input type="text" name="operand2"id="operand2" value="6" required/>'
                 +'  Operator:'
-                +'  <input type="text" name="operator" id="operator" required/>'
+                +'  <input type="text" name="operator" id="operator" value="+" required/>'
                 +'  Result:'
                 +'  <input type="text" name="result" id="result" readonly/>'
                 +'</form>');
@@ -14,9 +14,6 @@ function setUpHTMLFixture() {
 describe("getUserInput", function(){
 	beforeEach(function() {
     setUpHTMLFixture();
-    document.getElementById("operand1").value = "3";
-    document.getElementById("operand2").value = "6";
-    document.getElementById("operator").value = "+";
     });
 	it("returns the dict of user inputs", function(){
        expect(getUserInput()).toEqual({"operand1": 3, "operand2": 6, "operator": '+'});
