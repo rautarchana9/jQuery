@@ -1,13 +1,13 @@
 function setUpHTMLFixture() {
      setFixtures('<form id="calculator">'
      	        +'  Operand1'
-                +'  <input type="text" name="operand1" id="operand1" pattern="[0-9]"  onchange="displayResult();"required/>'
+                +'  <input type="text" name="operand1" id="operand1" pattern="[0-9]+([.,][0-9]+)?" step="0.01" onchange="displayResult();"required/>'
                 +'  Operand2'
-                +'  <input type="text" name="operand2"id="operand2" pattern="[0-9]"  onchange="displayResult();"required/>'
+                +'  <input type="text" name="operand2"id="operand2" pattern="[0-9]+([.,][0-9]+)?" step="0.01"  onchange="displayResult();"required/>'
                 +'  Operator:'
                 +'  <input type="text" name="operator" id="operator" pattern="[+-^*/]"  onchange="displayResult();"required/>'
                 +'  Result:'
-                +'  <input type="text" name="result" id="result" pattern="[0-9]" readonly/>'
+                +'  <input type="text" name="result" id="result" readonly/>'
                 +'</form>');
        
 }
@@ -19,7 +19,7 @@ describe("getUserInput", function(){
     document.getElementById("operator").value = "+";
     });
 	it("returns the dict of user inputs", function(){
-       expect(getUserInput()).toEqual({"operand1": 3, "operand2": 6, "operator": '+'});
+       expect(getUserInput()).toEqual({"operand1": "3", "operand2": "6", "operator": '+'});
 	});
 });
 
@@ -46,9 +46,9 @@ describe("displayResult", function(){
     
     });
 	it("returns correct result when operands and operator are valid", function(){
-		document.getElementById("operator").value = "+";
+		document.getElementById("operator").value = "*";
 		displayResult();
-        expect(document.getElementById("result").value).toBe("9");
+        expect(document.getElementById("result").value).toBe("18");
 	});
 	
     it("returns Invalid when operand is not valid", function() {
