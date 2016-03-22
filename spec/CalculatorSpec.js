@@ -21,11 +21,11 @@ describe("Operand", function(){
         expect(operand1.value).toBe("3");
     });
     it("should should return true if value is a number", function() {
-        expect(operand1.isvalid("operand1")).toBeTruthy();
+        expect(operand1.isvalid()).toBeTruthy();
     });
     it("should should return false if value is not a number", function() {
         document.getElementById("operand1").value = "*";
-        expect(operand1.isvalid("operand1")).toBeFalsy();
+        expect(operand1.isvalid()).toBeFalsy();
     });
 });
 
@@ -39,11 +39,7 @@ describe("Operator", function(){
         expect(operator.value).toBe("*");
     })
     it("should should return true if value is a number", function() {
-        expect(operator.isvalid("operand1")).toBeTruthy();
-    });
-    it("should should return false if value is not a number", function() {
-        document.getElementById("operand1").value = "$";
-        expect(operator.isvalid("operand1")).toBeFalsy();
+        expect(operator.isvalid()).toBeTruthy();
     });
 });
 
