@@ -11,30 +11,55 @@ function setUpHTMLFixture() {
                 +'</form>');
        
 }
-describe("getUserInput", function(){
-	beforeEach(function() {
+describe("Operand", function(){
+    beforeEach(function() {
     setUpHTMLFixture();
     document.getElementById("operand1").value = "3";
-    document.getElementById("operand2").value = "6";
-    document.getElementById("operator").value = "+";
+    operand1 = new Operand("operand1")
     });
-	it("returns the dict of user inputs", function(){
-       expect(getUserInput()).toEqual({"operand1": "3", "operand2": "6", "operator": '+'});
-	});
+    it("returns operand object", function(){
+        expect(operand1.value).toBe("3");
+    });
+    it("should should return true if value is a number", function() {
+        expect(operand1.isvalid("operand1")).toBeTruthy();
+    });
+    it("should should return false if value is not a number", function() {
+        document.getElementById("operand1").value = "*";
+        expect(operand1.isvalid("operand1")).toBeFalsy();
+    });
 });
+
+describe("Operator", function(){
+    beforeEach(function() {
+    setUpHTMLFixture();
+    document.getElementById("operator").value = "*";
+    operator = new Operator("operator")
+    });
+    it("returns operator object", function(){
+        expect(operator.value).toBe("*");
+    })
+    it("should should return true if value is a number", function() {
+        expect(operator.isvalid("operand1")).toBeTruthy();
+    });
+    it("should should return false if value is not a number", function() {
+        document.getElementById("operand1").value = "$";
+        expect(operator.isvalid("operand1")).toBeFalsy();
+    });
+});
+
 
 describe("calculate", function(){
 	it("returns the result of addition", function(){
-       expect(calculate({"operand1": 3, "operand2": 6, "operator": '+'})).toEqual(9);
+       expect(calculate( '3', '6', '+')).toEqual(9);
 	});
     it("returns the result of subtraction", function(){
-       expect(calculate({"operand1": 3, "operand2": 6, "operator": '-'})).toEqual(-3);
+       expect(calculate('3', '6', '-')).toEqual(-3);
 	});
 	it("returns the result of multiplication", function(){
-       expect(calculate({"operand1": 3, "operand2": 6, "operator": '*'})).toEqual(18);
+       expect(calculate( '3', '6', '*')).toEqual(18);
 	});
 	it("returns the result of division", function(){
-       expect(calculate({"operand1": 3, "operand2": 6, "operator": '/'})).toEqual(0.5);
+       expect(calculate('3', '6', '/')).toEqual(0.5);
 	});
 });
 
