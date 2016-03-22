@@ -1,10 +1,3 @@
-calculator = {
-
-	"+" : {eval: function(x,y){return (x+y);}},
-	"-" : {eval: function(x,y){return (x-y);}},
-	"*" : {eval: function(x,y){return (x*y);}},
-	"/" : {eval: function(x,y){return (x/y);}},	
-};
 
 function getUserInput() {
 	var operand1 = parseInt(document.getElementById("operand1").value);
@@ -15,7 +8,6 @@ function getUserInput() {
 }
 
 function calculate(userinput) {
-	operator = userinput["operator"];
-	result = calculator[operator].eval(userinput["operand1"], userinput["operand2"]);
+	result = eval(userinput["operand1"]+ " " + userinput["operator"] + " " + userinput["operand2"]);
     return result;
 }
