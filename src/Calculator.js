@@ -14,7 +14,13 @@ function calculate(userinput) {
 
 function getResult(){
 	var userinput = getUserInput();
-	return calculate(userinput);
+	if (!document.getElementById("operand1").validity.patternMismatch 
+	    && !document.getElementById("operator").validity.patternMismatch
+		&& !document.getElementById("operand2").validity.patternMismatch){
+	    return calculate(userinput);
+	}else {
+	    return "Invalid";
+	}	
 }
 
 function displayResult(){
