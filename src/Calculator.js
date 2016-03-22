@@ -11,3 +11,12 @@ function calculate(userinput) {
 	result = eval(userinput["operand1"]+ " " + userinput["operator"] + " " + userinput["operand2"]);
     return result;
 }
+
+function getResult(){
+	var userinput = getUserInput();
+	return calculate(userinput);
+}
+
+function displayResult(){
+	document.getElementById("result").value = getResult();
+}
