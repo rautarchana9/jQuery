@@ -18,4 +18,12 @@ function Box(element){
         this.bottomEnd = this.topEnd + this.height;
         return(currentPosition)
     }
+   
+    this.moveDown = function() {
+        currentPosition = this.getBoundaries()
+        currentPosition[3] = Math.min($(window).height(), currentPosition[3] + 10)
+        this.bottomEnd = currentPosition[3];
+        this.topEnd = this.bottomEnd - this.height;
+        return(currentPosition)
+    }
 }

@@ -46,5 +46,17 @@ describe("Box", function(){
             expect(box.moveUp()[1]).toBe(15);
         });
     });
+
+    describe("moveDown", function() {
+        it("returns dom width if bottom > 10", function() {
+        windowHeight = $(window).height();
+        spyOn(box, "getBoundaries").and.returnValue([5,5,5,windowHeight - 5]);
+            expect(box.moveDown()[3]).toBe(windowHeight);
+        });
+        it("returns bottomEnd + 10 if bottom <= windowHeight - 10", function() {
+        spyOn(box, "getBoundaries").and.returnValue([5,35,5,windowHeight - 35]);
+            expect(box.moveDown()[3]).toBe(windowHeight - 25);
+        });
+    });
 });
 
