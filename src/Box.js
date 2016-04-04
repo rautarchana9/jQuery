@@ -15,7 +15,6 @@ function Box(element){
         currentPosition = this.getBoundaries()
         currentPosition[1] = Math.max(0, currentPosition[1] - 10)
         this.topEnd = currentPosition[1];
-        this.bottomEnd = this.topEnd + this.height;
         return(currentPosition)
     };
    
@@ -31,7 +30,6 @@ function Box(element){
         currentPosition = this.getBoundaries()
         currentPosition[0] = Math.max(0, currentPosition[0] - 10)
         this.leftEnd = currentPosition[0];
-        this.rightEnd = this.leftEnd + this.width;
         return(currentPosition)
     };
    
