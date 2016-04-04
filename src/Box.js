@@ -9,7 +9,7 @@ function Box(element){
     
     this.getBoundaries = function() {
     return ([this.leftEnd, this.topEnd, this.rightEnd, this.bottomEnd]);
-    }
+    };
     
     this.moveUp = function() {
         currentPosition = this.getBoundaries()
@@ -17,7 +17,7 @@ function Box(element){
         this.topEnd = currentPosition[1];
         this.bottomEnd = this.topEnd + this.height;
         return(currentPosition)
-    }
+    };
    
     this.moveDown = function() {
         currentPosition = this.getBoundaries()
@@ -25,13 +25,47 @@ function Box(element){
         this.bottomEnd = currentPosition[3];
         this.topEnd = this.bottomEnd - this.height;
         return(currentPosition)
-    }
+    };
     
    this.moveLeft = function() {
         currentPosition = this.getBoundaries()
         currentPosition[0] = Math.max(0, currentPosition[0] - 10)
-        this.leftBoundary = currentPosition[0];
-        this.rightBoundary = this.leftBoundary + this.width;
+        this.leftEnd = currentPosition[0];
+        this.rightEnd = this.leftEnd + this.width;
         return(currentPosition)
-    }
-}
+    };
+   
+  this.moveRight = function() {
+       currentPosition = this.getBoundaries()
+       currentPosition[2] = Math.min($(window).width(), currentPosition[2] + 10)
+       this.rightEnd = currentPosition[2];
+       this.leftEnd = this.rightEnd - this.width;
+       return(currentPosition)
+   };
+
+  this.move = function() {
+      $(element).animate({top: this.topEnd + "px", left: this.leftEnd + "px"}, 100);
+  }; 
+ 
+  this.moveBox = function(key) {
+        switch(key.which) {
+            case 37: this.moveLeft();
+                     this.move();
+                     break;
+            case 38: this.moveUp();
+                     this.move();
+                     break;
+            case 39: this.moveRight();
+                     this.move();
+                     break;
+            case 40: this.moveDown();
+                     this.move();
+                     break;
+        }
+        key.preventDefault();
+    };
+};
+$(document).ready(function(){
+    var box  = new Box(".box");
+    $(document).keydown(function (key) { box.moveBox(key); } );
+});
