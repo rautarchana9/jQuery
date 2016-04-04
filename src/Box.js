@@ -26,4 +26,12 @@ function Box(element){
         this.topEnd = this.bottomEnd - this.height;
         return(currentPosition)
     }
+    
+   this.moveLeft = function() {
+        currentPosition = this.getBoundaries()
+        currentPosition[0] = Math.max(0, currentPosition[0] - 10)
+        this.leftBoundary = currentPosition[0];
+        this.rightBoundary = this.leftBoundary + this.width;
+        return(currentPosition)
+    }
 }

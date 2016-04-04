@@ -58,5 +58,16 @@ describe("Box", function(){
             expect(box.moveDown()[3]).toBe(windowHeight - 25);
         });
     });
+   
+   describe("moveLeft", function() {
+        it("returns 0 if leftEnd < 10", function() {
+        spyOn(box, "getBoundaries").and.returnValue([5,5,5,5]);
+            expect(box.moveLeft()[0]).toBe(0);
+        });
+        it("returns leftEnd - 10 if leftEnd >= 10", function() {
+        spyOn(box, "getBoundaries").and.returnValue([35,5,5,5]);
+            expect(box.moveLeft()[0]).toBe(25);
+        });
+    });
 });
 
